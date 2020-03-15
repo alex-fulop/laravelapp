@@ -8,10 +8,12 @@
      @if(count($posts) > 0)
      <ul class="list-group">
         @foreach($posts as $post)
+            @if($post->scheduled_time <= $post->created_at)
             <li class="list-group-item m-2">
                 <h1><a href="/pages/{{$post->id}}">{{$post->title}}</a></h1>
                 <small>Written By {{$post->user->name}} at : {{$post->created_at}}</small>
             </li>
+            @endif
         @endforeach
         </ul>
      @else

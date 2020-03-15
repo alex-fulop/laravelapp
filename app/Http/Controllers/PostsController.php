@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostStoreRequest;
 use App\Post;
+use Illuminate\Support\Carbon;
 
 class PostsController extends Controller
 {
@@ -15,6 +16,7 @@ class PostsController extends Controller
      */
     public function index()
     {
+        $current = Carbon::now();
         $posts = Post::all();
         return view('pages.posts')->with('posts', $posts);
     }
@@ -26,7 +28,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        return view('pages.create');
+        return view('pages.create')->with('current', Carbon::now());
     }
 
     /**
@@ -40,7 +42,7 @@ class PostsController extends Controller
         $post = new Post();
         $post->handleRequest($request);
 
-        return redirect('pages')->with('Success', 'Post Created');
+        return redirect('pages')->with('success', 'Post Created');
     }
 
     /**
@@ -66,7 +68,7 @@ class PostsController extends Controller
     {
         $post = Post::find($id);
 
-        return view('pages.create')->with('post', $post);
+        return view('pages.create', compact('post', $post, 'current', Carbon::now()));
     }
 
     /**

@@ -15,6 +15,11 @@
                 {{ Form::label('body', 'Body')}}
                 {{ Form::textarea('body', '', ['class' => 'form-control', 'placeholder' => 'Your content goes here'])}}
             </div>
+            {{-- Creating the Scheduled Section --}}
+            <div class="form-group">
+                {{ Form::label('schedule','Schedule Post (Year-Month-Date Hr:Min:Sec)')}}
+                {{ Form::text('schedule', $current, ['class' => 'form-control', 'placeholder' => 'Insert a date and time (leave blank to post ASAP)'])}}
+            </div>
 
             <div class="form-group">
                 {{ Form::submit('Post', ['class' => 'btn btn-dark']) }}
@@ -37,7 +42,12 @@
         </div>
 
         <div class="form-group">
-            {{ Form::submit('Post', ['class' => 'btn btn-dark']) }}
+            {{ Form::label('schedule','Schedule Post (Year-Month-Date Hr:Min:Sec)')}}
+            {{ Form::text('schedule', Carbon::now(),['class' => 'form-control', 'placeholder' => 'Insert a date and time (leave blank to post ASAP)'])}}
+        </div>
+
+        <div class="form-group">
+            {{ Form::submit('Post', '', ['class' => 'btn btn-dark']) }}
         </div>
 
     {{ Form::close()}}
