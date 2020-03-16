@@ -27,3 +27,5 @@ Route::resource('pages', 'PostsController');
 Route::resource('comments', 'CommentsController')->except(['store']);
 
 Route::get('comments/{comment}', 'CommentsController@store')->name('comments.store');
+
+Route::get('filter', 'PostsController@filter')->name('pages.filter');

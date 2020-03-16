@@ -49,7 +49,6 @@
                                 @endforeach
                             </tbody>
                             {{-- Scheduled posts Section --}}
-
                         </table>
                     @endif
                 </div>

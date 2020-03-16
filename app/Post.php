@@ -29,6 +29,10 @@ class Post extends Model
         return $this->hasMany('App\Comment');
     }
 
+    public function categories()
+    {
+        return $this->belongsToMany('App\Category', 'category_post');
+    }
     //Handle Request
     public function handleRequest(PostStoreRequest $request)
     {
@@ -40,5 +44,14 @@ class Post extends Model
         }
         $this->user_id = Auth()->user()->id;
         $this->save();
+        $this->categories()->sync($request->input('categories'));
+    }
+
+    //Scopes
+    public function scopeHasFilters($query, $filterNames)
+    {
+        return Post::whereHas('categories', function ($query) use ($filterNames) {
+            $query->where('name', 'like', $filterNames)->orderBy('name', 'asc');
+        });
     }
 }

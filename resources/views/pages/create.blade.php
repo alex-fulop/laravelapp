@@ -21,11 +21,20 @@
                 {{ Form::text('schedule', $current, ['class' => 'form-control', 'placeholder' => 'Insert a date and time (leave blank to post ASAP)'])}}
             </div>
 
+            {{-- Creating the categories Section --}}
+            <div class="form-group">
+                {{ Form::label('categories', 'Categories:')}}
+                {{ Form::select('categories[]', $categories, null, ['class' => 'form-control', 'multiple' => 'multiple'])}}
+            </div>
+
             <div class="form-group">
                 {{ Form::submit('Post', ['class' => 'btn btn-dark']) }}
             </div>
 
-        {{ Form::close()}}
+            {{ Form::close()}}
+
+
+
     @else
     <h1>Edit Post</h1>
 
