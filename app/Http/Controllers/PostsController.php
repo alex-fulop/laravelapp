@@ -39,6 +39,7 @@ class PostsController extends Controller
         $posts = Post::HasFilters($filterNames)->get();
 
         return view('pages.posts', compact('posts', $posts, 'categories', $categories));
+
         // dd($posts);
 
         // $filteredPosts = array();
